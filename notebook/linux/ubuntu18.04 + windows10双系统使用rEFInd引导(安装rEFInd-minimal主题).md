@@ -29,6 +29,7 @@
 sudo -s
 cd /boot/efi/EFI/refind
 mkdir themes
+cd themes
 git clone https://github.com/EvanPurkhiser/rEFInd-minimal.git
 ```
 
