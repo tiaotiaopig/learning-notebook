@@ -21,6 +21,30 @@ def backtrack(路径, 选择列表):
         撤销选择
 ```
 
+> 上面的回溯算法中，每次进入递归函数，可以理解为进行一次决策。在遍历过程中使用的是 for 循环，说明在该次决策中，有多种选择，每一个可能的选择，我们都要进行尝试，尝试完成后，撤销选择，以便 for 中进行下一次选择
+>
+> 上述回溯过程，实现的是全排列
+
+~~~java
+public void backtrack (char[] str, int index, String t, StringBuilder sb) {
+        if (sb.length() == t.length()) {
+            if (sb.toString().equals(t)) count++;
+            return;
+        }
+        if (index == str.length) return;
+        // 使用当前字母
+        sb.append(str[index]);
+        backtrack(str, index + 1, t, sb);
+        // 不使用当前字母
+        sb.deleteCharAt(sb.length() - 1);
+        backtrack(str, index + 1, t, sb);
+    }
+~~~
+
+> 如果使用回溯法列举子序列（不是子串），我们就不能使用 for 循环了，因为这里每次决策，我们只有两种选择，选 or 不选
+>
+> 因此，我们只需要将 for 改掉就可以了，我们使用 index 控制当前遍历位置
+
 ## 说明
 
 > 回溯法就是我们常说的深度优先遍历，本质上就是一种暴力穷举法，按照规律进行列举，防止有所遗漏
