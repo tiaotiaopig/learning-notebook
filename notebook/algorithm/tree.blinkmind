@@ -1,7 +1,7 @@
 {
   "rootTopicKey": "06f44de7-aa3e-45d4-9ce9-fe124ae6fb3c",
   "editorRootTopicKey": "06f44de7-aa3e-45d4-9ce9-fe124ae6fb3c",
-  "focusKey": "55fc18ea-8b2b-4fab-ac88-e693f4bd12fb",
+  "focusKey": "06f44de7-aa3e-45d4-9ce9-fe124ae6fb3c",
   "extData": {
     "TOPIC_REFERENCE": {
       "reference": {}
@@ -21,7 +21,7 @@
         },
         {
           "type": "DESC",
-          "data": "反转二叉树，镜像二叉树。\n\n面试题 04.06. 后继者\n971\n\n987\n\n99\n\n863\n\n路径和\n\n计算深度\n\n深度求完，求宽度。 这俩母题要会哦\n\n求直径，这个画一个图，图中 null 用虚线画出来，大家容易理解一点\n\n# Definition for a binary tree node.\n\n# class TreeNode:\n\n# def init\\(self, x\\):\n\n# self\\.val = x\n\n# self\\.left = None\n\n# self\\.right = None\n\nclass Solution:\n```\ndef widthOfBinaryTree(self, root: TreeNode) -> int:\n    q = [(root, 0, 0)]\n    cur_depth = leftmost = ans = 0\n\n    while q:\n        for _ in range(len(q)):\n            node, depth, pos = q.pop(0)\n            if node:\n                q.append((node.left, depth + 1, pos * 2))\n                q.append((node.right, depth + 1, pos * 2 + 1))\n                if cur_depth != depth:\n                    cur_depth = depth\n                    leftmost = pos\n                ans = max(ans, pos - leftmost + 1)\n    return ans\n\n```\n"
+          "data": "反转二叉树，镜像二叉树。\n\n面试题 04.06. 后继者\n971\n\n987\n\n99\n\n863\n\n路径和\n\n计算深度\n\n深度求完，求宽度。 这俩母题要会哦\n\n求直径，这个画一个图，图中 null 用虚线画出来，大家容易理解一点\n# Definition for a binary tree node.\n\n# class TreeNode:\n\n# def init\\(self, x\\):\n\n# self\\.val = x\n\n# self\\.left = None\n\n# self\\.right = None\n\nclass Solution:\n```\ndef widthOfBinaryTree(self, root: TreeNode) -> int:\n    q = [(root, 0, 0)]\n    cur_depth = leftmost = ans = 0\n\n    while q:\n        for _ in range(len(q)):\n            node, depth, pos = q.pop(0)\n            if node:\n                q.append((node.left, depth + 1, pos * 2))\n                q.append((node.right, depth + 1, pos * 2 + 1))\n                if cur_depth != depth:\n                    cur_depth = depth\n                    leftmost = pos\n                ans = max(ans, pos - leftmost + 1)\n    return ans\n\n```\n"
         }
       ]
     },
