@@ -12,7 +12,7 @@
 result = []
 def backtrack(路径, 选择列表):
     if 满足结束条件:
-        result.add(路径)
+        result.add(路径) # 深拷贝
         return
 
     for 选择 in 选择列表:
