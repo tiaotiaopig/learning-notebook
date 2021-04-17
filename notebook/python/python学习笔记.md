@@ -2,6 +2,13 @@
 
 ---
 ## 第一天（基础知识）
++ Python中一切皆对象,支持重载,多继承,泛型
++ Python核心只包括数字,字符串,列表,字典,文件
++ Python有强大的标准库和第三方库
++ 库管理工具包括anaconda和pip,conda主要是科学计算,pip更通用
++ Python主要有两个版本Python2 和Python3(主流)
++ 对应的解释器分别为python 和 python3
++ Python的解释器有多语言实现,CPython官方的,python实现的PyPy
 + 每条语句后无需分号；
 + 变量 字母数字下划线组成，数字不能打头，不能使用关键字
 + 命名规则：变量名 小写 下划线隔开
