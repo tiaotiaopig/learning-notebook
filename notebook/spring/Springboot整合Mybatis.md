@@ -1,6 +1,4 @@
-@[TOC](Springboot整合mybatis快速入门)
-
-# 整合示例
+## 整合示例
 
 本文将以连接MySQL数据库为例(5.5+),使用mybatis基于xml的方式完成一张user表的crud操作,最后使用Swagger自动生成接口文档,对相关方法进行测试.
 

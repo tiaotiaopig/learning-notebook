@@ -1,5 +1,26 @@
 # 使用git将本地仓库推送到github
 
+## git 简单入门
+
+~~~shell
+# 初始化 git 本地仓库,会多出 .git 的隐藏文件夹
+cd /usr/workspace
+git init
+# 修改 添加文件后,保存到暂存区
+git add --all
+# 将修改提交到本地仓库
+git commit -m '本次提交的相关信息'
+# 将修改提交到远程仓库
+git push origin master/main
+# 查看当前仓库的状态
+git status
+
+# 从远程仓库克隆项目
+git clone https://www.github.com/username/projectname
+# 每次提交前都应该先从远程仓库更新最新的修改
+git pull origin main
+~~~
+
 ## github上创建远程仓库
 
 > 1. 登录后在用户的主界面,右上角点击加号 -> New Repository -> 设置仓库名称,是否私有,其他的就不要点了
@@ -9,14 +30,15 @@
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
 >     注意：这个邮箱地址写你自己的
->     
-> # Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
->     sudo apt-get install xclip
->     
->     # Copies the contents of the id_rsa.pub file to your clipboard
->     xclip -selection clipboard < ~/.ssh/id_rsa.pub
 >     ```
->     
+>
+> ```shell
+> sudo apt-get install xclip
+> 
+> # Copies the contents of the id_rsa.pub file to your clipboard
+> xclip -selection clipboard < ~/.ssh/id_rsa.pub
+> ```
+>
 > 4. 接着你会看到一个叫.ssh的目录，里面有两个文件， id_rsa 和 id_rsa.pub，秘钥就在id_rsa.pub文件里，打开它，然后复制 ，粘贴到github的哪个秘钥大框框里，标题随便写，最后点击Add ssh key即可。
 >
 >     注:这里查看私钥的密码可以不设置(lifeng我设置的密码)
@@ -43,6 +65,40 @@ tips:
 > 4. `git remote rm origin`将远程关联解除
 > 5. .gitignore文件,在**Git工作区**的**根目录下**创建一个特殊的**.gitignore文件**，然后把**要忽略的文件名填进去，Git就会自动忽略这些文件。**
 > 6. .gitignore文件最后也要提交上去.
+
+## git 撤销命令
+
+1. git commit 之后,如何撤销 commit 操作
+
+    修改了本地的代码，然后使用：
+
+    > git add file
+    >  git commit -m '修改原因'
+
+    执行commit后，还没执行push时，想要撤销这次的commit，该怎么办？
+
+    解决方案：
+     使用命令：
+
+    > git reset --soft HEAD^
+
+    这样就成功撤销了commit，如果想要连着add也撤销的话，--soft改为--hard（删除工作空间的改动代码）。
+
+    命令详解：
+
+    > HEAD^  表示上一个版本，即上一次的commit，也可以写成HEAD~1
+    >  如果进行两次的commit，想要都撤回，可以使用HEAD~2
+
+    > --soft
+    >  不删除工作空间的改动代码 ，撤销commit，不撤销git add file
+
+    > --hard
+    >  删除工作空间的改动代码，撤销commit且撤销add
+
+    另外一点，如果commit注释写错了，先要改一下注释，有其他方法也能实现，如：
+
+    > git commit --amend
+    >  这时候会进入vim编辑器，修改完成你要的注释后保存即可。
 
 ## 更改远端仓库URL
 
