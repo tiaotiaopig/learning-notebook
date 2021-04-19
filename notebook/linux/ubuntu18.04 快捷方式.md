@@ -34,10 +34,11 @@ StartupWMClass=jetbrains-idea
 ## 网易云字体大小
 
 > `Exec=netease-cloud-music --force-device-scale-factor=1.5 %U`
+=======
+> `Exec=netease-cloud-music --force-device-scale-factor=1.5 %U`
 
 ##  AppImage的解包和打包
 
 > `./NAME.AppImage --appimage-extract` 解包
 >
 > `./appimagetool-x86_64.AppImage squashfs-root NAME_NEW.AppImage` 打包
-
