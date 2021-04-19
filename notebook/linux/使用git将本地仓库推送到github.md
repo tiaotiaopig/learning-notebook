@@ -9,14 +9,16 @@
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
 >     注意：这个邮箱地址写你自己的
->     
-> # Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
+>     ```
+>
+> Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
+>
 >     sudo apt-get install xclip
 >     
 >     # Copies the contents of the id_rsa.pub file to your clipboard
 >     xclip -selection clipboard < ~/.ssh/id_rsa.pub
 >     ```
->     
+>
 > 4. 接着你会看到一个叫.ssh的目录，里面有两个文件， id_rsa 和 id_rsa.pub，秘钥就在id_rsa.pub文件里，打开它，然后复制 ，粘贴到github的哪个秘钥大框框里，标题随便写，最后点击Add ssh key即可。
 >
 >     注:这里查看私钥的密码可以不设置(lifeng我设置的密码)
@@ -68,7 +70,6 @@ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
    git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
    ```
 
-   
 
 ## 从零开始
 
