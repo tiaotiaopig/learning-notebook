@@ -15,7 +15,7 @@
 + 在敲出 文件／目录／命令 的前几个字母之后，按下 tab 键
     + 如果输入的没有歧义，系统会自动补全
     + 如果还存在其他 文件／目录／命令，再按一下 tab 键，系统会提示可能存在的命令
-小技巧
+    小技巧
 
 + 按 上／下 光标键可以在曾经使用过的命令之间来回切换,如果想要退出选择，并且不想执行当前选中的命令，可以按 ctrl + c
 
@@ -58,10 +58,16 @@
 + 示例(解压与压缩)
    1. 解压到目标路径:
    
-   >  ```sudo tar -xzvf ~/download/in.tar.gz -C /home/target```
+   >  ~~~sh
+   >  sudo tar -xzvf ~/download/in.tar.gz -C /home/target
+   >  ~~~
+   >
+   >  
    2. 压缩文件到当前路径:
-
-   > ```sudo tar -czvf archive.tar.gz foo.txt bar.txt```
+   
+   > ~~~shell
+   > sudo tar -czvf archive.tar.gz foo.txt bar.txt
+   > ~~~
 
 ## 文件相关操作
 
@@ -71,4 +77,18 @@
     + 以 . 开头的文件为隐藏文件，需要用 -a 参数才能显示
     + . 代表当前目录
     + .. 代表上一级目录
+
+## ssh远程登录
+
++ 登录远程主机(默认22端口):`ssh lifeng@192.168.54.65`
+
++ 使用公钥登录
+
+    1. 在本机生成公钥对
+
+        `ssh-keygen -t rsa   #-t表示类型选项，这里采用rsa加密算法`
+
+    2. 将公钥复制到远程主机中
+
+        `ssh-copy-id lifeng@192.168.54.65`
 
