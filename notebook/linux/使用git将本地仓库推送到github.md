@@ -30,7 +30,7 @@ git pull origin main
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
 >     注意：这个邮箱地址写你自己的
-<<<<<<< HEAD
+    <<<<<<< HEAD
 >     ```
 >
 > ```shell
@@ -125,6 +125,9 @@ cd workspace
 git remote -v
 # 更改为https链接
 git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+# 也可以先删除ssh,再加https
+git remote rm origin
+git remote add origin https://
 ```
 
 2. 从 https 到 ssh
@@ -137,6 +140,19 @@ git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
    # 更改为https链接
    git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
    ```
+
+3. 使用插件提供的加速https链接,并将密码缓存
+
+    ~~~bash
+    # 默认是保存15分钟
+    git config --global credential.helper cache
+    # 长久存储,执行该命令后,再pull或者push下,输入用户名和密码,下次就不用输入了
+    git config --global credential.helper store
+    # 增加远程地址的时候带上密码也是可以的。(推荐)
+    http://yourname:password@git.oschina.net/name/project.git
+    ~~~
+
+    
 
 
 ## 从零开始
