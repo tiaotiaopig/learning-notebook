@@ -24,7 +24,7 @@
 
 ### 主要技术
 
-![技术栈](https://i.loli.net/2021/05/29/DkLu4MfIdlrTZ9U.png)
+<img src="https://i.loli.net/2021/05/29/DkLu4MfIdlrTZ9U.png" alt="技术栈" style="zoom:150%;" />
 
 ### content
 
