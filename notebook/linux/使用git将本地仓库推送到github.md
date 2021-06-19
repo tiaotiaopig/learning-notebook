@@ -86,17 +86,23 @@ tips:
 
     修改了本地的代码，然后使用：
 
-    > git add file
-    >  git commit -m '修改原因'
+    ```bash
+    git add file
+    git commit -m '修改原因'
+    ```
 
     执行commit后，还没执行push时，想要撤销这次的commit，该怎么办？
 
-    解决方案：
-     使用命令：
+    ```bash
+    # 查看提交记录
+    git reflog
+    # 修改HEAD指向
+    git reset --soft HEAD^
+    ```
 
-    > git reset --soft HEAD^
+    这样就成功撤销了commit，如果想要连着add也撤销的话，--soft改为--hard（删除工作空间的改动代码）,不推荐。
 
-    这样就成功撤销了commit，如果想要连着add也撤销的话，--soft改为--hard（删除工作空间的改动代码）。
+    想要**撤销add**，可以使用`git rm –cached`
 
     命令详解：
 
@@ -112,7 +118,22 @@ tips:
     另外一点，如果commit注释写错了，先要改一下注释，有其他方法也能实现，如：
 
     > git commit --amend
-    >  这时候会进入vim编辑器，修改完成你要的注释后保存即可。
+    > 这时候会进入vim编辑器，修改完成你要的注释后保存即可。
+
+2. 如果git push 之后，撤销远程怎么办
+
+    使用上面的操作，然后强行覆盖远程分支
+
+    ```bash 
+    # 查看commit信息
+    git reflog
+    # 回退上一版本
+    git reset --soft HEAD~1
+    # 撤销add
+    git rm --cached
+    # 修改之后，正常add和commit，提交时使用强制提交
+    git push origin main --force
+    ```
 
 ## 更改远端仓库URL
 

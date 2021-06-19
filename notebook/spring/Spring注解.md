@@ -8,6 +8,16 @@
 
     > 用于field时,比较便捷,但是不推荐,通常将该注解用于setter方法上.当用于构造方法上时,需要注意:一个类中只允许有一个构造方法使用此注解,此外,在sping4.3后,如果一个类只有一个构造方法,那么即使不使用该注解,sping也会自动注入相关的bean.
 
+    > java有个注解**@Resource**和**@Autowired**很类似，在spring中也是支持的
+    >
+    > 在接口只有单一实现类的时候二者可以互换
+    >
+    > 在一个接口有多个实现类的时候，就会有歧义，没法确定使用哪个实现类
+    >
+    > **@Resource**先ByName,没有再ByType，（name指类名，首字母要小写，type指的是class的类型），可以通过**name**属性解决，**@Resource(name="man")**,或者  **@Resource + @Qualifier("woman")**
+    >
+    > **@Autowired** 先type 后 name，通过可以通过**@Qualifier("woman")**解决
+
 + `@Value`
 
 ## stereotype注解

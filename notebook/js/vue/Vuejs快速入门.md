@@ -14,3 +14,73 @@
 
 ## 模板语法
 
+1. 创建一个**dom**节点，供**Vue**渲染使用，本次使用的即是下面的**div**节点
+
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <meta http-equiv="X-UA-Compatible" content="ie=edge">
+       <style type="text/css">
+           .demo {
+               font-family: sans-serif;
+               border: 1px solid #eee;
+               border-radius: 2px;
+               padding: 20px 30px;
+               margin-top: 1em;
+               margin-bottom: 40px;
+               user-select: none;
+               overflow-x: auto;
+           }
+       </style>
+       <title>HelloWorld</title>
+   </head>
+   
+   <body>
+       <div id="hello-vue" class="demo">
+           {{ message }}
+         </div>
+   
+       <script src="https://unpkg.com/vue@next"></script>  <!-- vue 路径-->
+       <script>
+        const HelloVueApp = {
+           data() {
+               return {
+               message: 'Hello Vue!!'
+               }
+           }
+        }
+   
+        Vue.createApp(HelloVueApp).mount('#hello-vue')
+       </script>
+   </body>
+   
+   </html>
+   ```
+
+2. 采用简洁的**模板语法**来声明式地将数据渲染进 DOM 的系统
+
+   ```javascript
+   # 使用vue
+   const HelloVueApp = {
+       data() {
+           return {
+               message: 'Hello Vue!!'
+           }
+       }
+   }
+   
+   Vue.createApp(HelloVueApp).mount('#hello-vue')
+   
+   # 另一种写法
+   const vm = new Vue({
+           el: '#hello-vue',
+           data: {message: 'Hello Vue!!'},
+           methods: {}
+   });
+   ```
+
+## vue 指令
+
