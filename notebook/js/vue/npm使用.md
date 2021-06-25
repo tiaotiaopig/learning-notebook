@@ -92,11 +92,22 @@ npm uninstall xxx
 npm uninstall -g xxx
 ```
 
-## 查看
+## 查看 
 
 查看全局安装的包
 
 ```cpp
 npm list -g --depth 0
+```
+
+## 镜像源
+
+```bash
+# 设置淘宝镜像源
+npm config set registry https://registry.npm.taobao.org
+# 查看当前镜像配置
+npm config get registry
+# 还原配置
+npm config set registry https://registry.npmjs.org/
 ```
 
