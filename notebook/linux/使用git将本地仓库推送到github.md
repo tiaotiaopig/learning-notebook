@@ -81,7 +81,20 @@ tips:
 
 ## git 撤销命令
 
-1. git commit 之后,如何撤销 commit 操作
+1. git add --all 如何撤销
+
+    ~~~bash
+    # 添加所有修改到暂存区
+    git add --all
+    # 或者
+    git add .
+    # 撤销所有add
+    git reset HEAD
+    # 撤销add 文件a
+    git reset HEAD a
+    ~~~
+    
+2. git commit 之后,如何撤销 commit 操作
 
     修改了本地的代码，然后使用：
 
@@ -119,7 +132,7 @@ tips:
     > git commit --amend
     > 这时候会进入vim编辑器，修改完成你要的注释后保存即可。
 
-2. 如果git push 之后，撤销远程怎么办
+3. 如果git push 之后，撤销远程怎么办
 
     使用上面的操作，然后强行覆盖远程分支
 
