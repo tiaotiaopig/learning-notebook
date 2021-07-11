@@ -3,7 +3,7 @@
 ## 快速使用
 
 1. 导入依赖
-```
+```xml
         <!-- 使用swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -25,7 +25,7 @@
 > 说明:前两份为官方依赖,最后的为美化.
 
 2. 添加Swagger的Configuration类
-```
+```java
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
@@ -54,7 +54,7 @@ public class SwaggerConfiguration {
 > 需要特别注意的是swagger scan base package,这是扫描注解的配置，即你的API接口位置。
 
 3. 具体使用
-```
+```java
 @RestController
 @RequestMapping("/user")
 @Api(tags = "用户管理")

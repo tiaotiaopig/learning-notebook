@@ -229,3 +229,12 @@ ps axjf # 查看连同一部分进程树状态
 ```
 netstat -tunlp|grep 端口号 
 ```
+
+### 22 ps 查看进程
+
+`ps aux`
+
+### 23 history
+
+查看命令历史
+

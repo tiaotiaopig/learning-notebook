@@ -2,6 +2,9 @@
 
 **通过 HTML DOM，可访问 JavaScript HTML 文档的所有元素。**
 
+- property是DOM中的属性，是JavaScript里的对象；
+- attribute是HTML标签上的特性，它的值只能够是字符串；
+
 ## HTML DOM （文档对象模型）
 
 当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）。
