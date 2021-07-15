@@ -29,32 +29,28 @@ git pull origin main
 >
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
->     注意：这个邮箱地址写你自己的
-      <<<<<<< HEAD
+    注意：这个邮箱地址写你自己的
 >     ```
->
+  
 > ```shell
->sudo apt-get install xclip
-> 
+>	sudo apt-get install xclip
+>     # 注意：这个邮箱地址写你自己的
+>    sudo apt-get install xclip
 >     # Copies the contents of the id_rsa.pub file to your clipboard
-> xclip -selection clipboard < ~/.ssh/id_rsa.pub
+    xclip -selection clipboard < ~/.ssh/id_rsa.pub
 > ```
 > 
->Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
-
-> ```sh
-> sudo apt-get install xclip
-> ```
-
-Copies the contents of the id_rsa.pub file to your clipboard
-
->     xclip -selection clipboard < ~/.ssh/id_rsa.pub
-> ```
+>    4. 接着你会看到一个叫.ssh的目录，里面有两个文件， id_rsa 和 id_rsa.pub，秘钥就在id_rsa.pub文件里，打开它，然后复制 ，粘贴到github的哪个秘钥大框框里，标题随便写，最后点击Add ssh key即可。
 > 
->     4. 接着你会看到一个叫.ssh的目录，里面有两个文件， id_rsa 和 id_rsa.pub，秘钥就在id_rsa.pub文件里，打开它，然后复制 ，粘贴到github的哪个秘钥大框框里，标题随便写，最后点击Add ssh key即可。
->
 > 注:这里查看私钥的密码可以不设置(lifeng我设置的密码)
-> ```
+
+>     Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer (like `yum`)
+>     
+>     Copies the contents of the id_rsa.pub file to your clipboard
+>    
+>     4. 接着你会看到一个叫.ssh的目录，里面有两个文件， id_rsa 和 id_rsa.pub，秘钥就在id_rsa.pub文件里，打开它，然后复制 ，粘贴到github的哪个秘钥大框框里，标题随便写，最后点击Add ssh key即可。
+>     
+    注:这里查看私钥的密码可以不设置(lifeng我设置的密码)
 
 ## 使用git将本地仓库推送到远程仓库
 
@@ -245,6 +241,3 @@ git remote add origin http://yourname:password@git.oschina.net/name/project.git
 git clone ssh地址
 使用IDE打开这个根目录作为项目的根目录
 ```
-
-
-
