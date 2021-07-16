@@ -24,7 +24,14 @@
    export PATH=$PATH:/root/node-v12.18.1-linux-x64/bin
    # 让修改生效
    source /etc/profile
-   ```
-
    
-
+   sudo vim ~/.zshrc
+   
+   # 添加以下内容
+   # nodejs environment config
+   export NODEJS_HOME=/usr/local/develop/node-v14.17.3-linux-x64
+   export PATH=.:${NODEJS_HOME}/bin:$PATH
+   
+   source ~/.zshrc
+   ```
+   
