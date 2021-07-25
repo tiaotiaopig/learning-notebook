@@ -30,5 +30,17 @@
 >
 >解决:删除`/etc/resolv.conf` 这个链接文件,然后`vim /etc/resolv.conf`新建即可 
 
+wsl域名服务器出错解决方案：
 
+网络适配器出错，WSL使用的是WinSocket
 
+管理员打开powershell,运行以下命令
+
+```bash
+netsh winsock reset
+netsh int ip reset all
+netsh winhttp reset proxy
+ipconfig /flushdns
+```
+
+重启

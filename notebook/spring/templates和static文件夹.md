@@ -28,9 +28,9 @@
 ## 自定义springMVC
 
      如果Spring Boot提供的Sping MVC不符合要求，则可以通过一个配置类（注解有@Configuration的类）加上@EnableWebMvc注解来实现完全自己控制的MVC配置。
-
+    
      当然，通常情况下，Spring Boot的自动配置是符合我们大多数需求的。在你既需要保留Spring Boot提供的便利，有需要增加自己的额外的配置的时候，可以定义一个配置类并继承WebMvcConfigurerAdapter,无需使用@EnableWebMvc注解。
-
+    
      这里我们提到这个WebMvcConfigurerAdapter这个类，重写这个类中的方法可以让我们增加额外的配置，这里我们就介绍几个常用的。
 
 ### 自定义资源映射addResourceHandlers
@@ -81,7 +81,7 @@ addResourceLocations指的是文件放置的目录，addResoureHandler指的是�
         super.addViewControllers(registry);
     }
 ```
-值的指出的是，在这里重写addViewControllers方法，并不会覆盖WebMvcAutoConfiguration中的addViewControllers（在此方法中，Spring Boot将“/”映射至index.html），这也就意味着我们自己的配置和Spring Boot的自动配置同时有效，这也是我们推荐添加自己的MVC配置的方式。
+值的指出的是，在这里重写addViewControllers方法，并不会覆盖WebMvcAutoConfiguration中的addViewControllers（在此方法中，Spring Boot将“/”映射至 index.html），这也就意味着我们自己的配置和Spring Boot的自动配置同时有效，这也是我们推荐添加自己的MVC配置的方式。
 ## Spring Security使用自定义表单登录要点:
 
 1. 创建一个form表单,至少要要有用户名,密码两项内容,提交方法为post,提交路径(action属性)为loginProcessingUrl

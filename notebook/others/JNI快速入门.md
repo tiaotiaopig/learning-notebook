@@ -81,3 +81,5 @@ JNI的全称就是Java Native Interface，顾名思义，就是Java和C/C++相�
    Linux下生成相对应的文件，后缀一般为so。编译指令与windows下类似，只是必须指定参数-fPIC，即“地址无关代码Position Independent Code”
 
 5. 运行Java类`java -cp . com.insight.JNIDemo`,在根目录执行,可以看到输出为cpp文件所定义的方法内容
+
+6. 如果要在C中使用，所有的env->都要被替换成(*env)->，而 且后面的函数中需要增加一个参数env
