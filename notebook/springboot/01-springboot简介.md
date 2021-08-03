@@ -129,8 +129,17 @@ public class MyApplication {
 + The `@RequestMapping` annotation provides “routing” information. It tells Spring that any HTTP request with the `/` path should be mapped to the `home` method. The `@RestController` annotation tells Spring to render the resulting string directly back to the caller.（java bean ==> json）
 
 + The second class-level annotation is `@EnableAutoConfiguration`. This annotation tells Spring Boot to “guess” how you want to configure Spring, based on the jar dependencies that you have added. Since `spring-boot-starter-web` added Tomcat and Spring MVC, the auto-configuration assumes that you are developing a web application and sets up Spring accordingly.
+
 + Auto-configuration is designed to work well with “Starters”, but the two concepts are not directly tied. You are free to pick and choose jar dependencies outside of the starters. Spring Boot still does its best to auto-configure your application.
+
 + The final part of our application is the `main` method. This is a standard method that follows the Java convention for an **application entry point**. 
+
++ `@SpringBootApplication` is a convenience annotation that adds all of the following:
+
+  - `@Configuration`: Tags the class as a source of bean definitions for the application context.
+  - `@EnableAutoConfiguration`: Tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+  - `@EnableWebMvc`: Flags the application as a web application and activates key behaviors, such as setting up a `DispatcherServlet`. Spring Boot adds it automatically when it sees `spring-webmvc` on the classpath.
+  - `@ComponentScan`: Tells Spring to look for other components, configurations, and services in the the `com.example.testingweb` package, letting it find the `HelloController` class.
 
 ## 项目运行
 
@@ -141,6 +150,14 @@ public class MyApplication {
 `ctrl-c` 停止运行
 
 ## 打包
+
+如果是通过spring.io创建的项目，在根目录下，会有**mvnw**构建脚本
+
+可以直接在命令行，`./mvnw spring-boot:run`直接运行
+
+`./mvnw clean package`清除并打包
+
+`java -jar target/gs-rest-service-cors-0.1.0.jar` java命令直接运行
 
 We finish our example by creating a completely self-contained executable jar file that we could run in production. Executable jars (sometimes called “fat jars”) are archives containing your compiled classes along with all of the jar dependencies that your code needs to run.
 

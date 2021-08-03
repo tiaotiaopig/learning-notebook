@@ -14,7 +14,6 @@ git commit -m '本次提交的相关信息'
 git push origin master/main
 # 查看当前仓库的状态
 git status
-
 # 从远程仓库克隆项目
 git clone https://www.github.com/username/projectname
 # 每次提交前都应该先从远程仓库更新最新的修改
