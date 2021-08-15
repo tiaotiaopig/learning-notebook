@@ -34,6 +34,12 @@ npm install xxx@1.2.0
 
 ## 更新
 
+更新 npm
+
+```bash
+npm install -g npm
+```
+
 先检查更新
 
 ```undefined
@@ -66,8 +72,9 @@ ncu -u
 
 以上命令执行，更新全部模块。但在实际开发中不建议一次全部更新，可以根据实际需要，更新指定的模块，并且可以根据作用范围在后面加上 -D、-S 或 -g
 
-```undefined
+```bash
  npm update xxx
+ npm update -g @vue/cli
 ```
 
 注意：指定更新需要提前修改 package.json 中的版本号。
@@ -82,14 +89,14 @@ npm install
 
 删除指定模块；
 
-```undefined
+```bash
 npm uninstall xxx 
 ```
 
 删除全局模块
 
-```undefined
-npm uninstall -g xxx
+```bash
+npm uninstall xxx -g
 ```
 
 ## 查看 
