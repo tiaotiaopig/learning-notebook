@@ -97,3 +97,25 @@
 
 **需要注意**，预检请求（option请求）要**过滤**掉，它没法带token，也无需做认证，拦截器实现路径认证鉴权，会把所有请求都拦截
 
+## nginx配置跨域
+
+是自己实践过少啦，nginx也是需要配置跨域的，只是自己没有遇到问题而已，例如[陌溪](https://gitee.com/moxi159753)提到，再使用nginx代理图片时，即使同域名同端口还是出现跨域问题
+
+解决方法也很简单，只需要再nginx的配置文件中，进行跨域配置即可解决
+
+![img](https://i.loli.net/2021/08/10/Vq8wyDTdIO2iWjh.png)
+
+```ngin
+add_header Access-Control-Allow-Origin *;
+add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,lang,access-token';
+        if ($request_method = 'OPTIONS') {
+         return 204;
+```
+
+> 主要就是允许跨域的域名，请求方法和请求头
+>
+> 要是使用了自定义的请求头的话，需要自己把他加进去，例如**satoken**
+>
+> 如果是预检请求（options）直接放过，这样浏览器才会发送正式的请求
+
