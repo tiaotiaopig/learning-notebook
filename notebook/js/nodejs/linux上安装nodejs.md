@@ -30,8 +30,7 @@
    # 添加以下内容
    # nodejs environment config
    export NODEJS_HOME=/usr/local/develop/node-v14.17.3-linux-x64
-   export PATH=.:${NODEJS_HOME}/bin:$PATH
+   export PATH=.${NODEJS_HOME}/bin:$PATH
    
    source ~/.zshrc
    ```
-   

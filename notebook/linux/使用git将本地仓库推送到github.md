@@ -29,7 +29,7 @@ git pull origin main
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
 >     注意：这个邮箱地址写你自己的
->   sudo apt-get install xclip
+>     sudo apt-get install xclip
 >     # Copies the contents of the id_rsa.pub file to your clipboard
 >     xclip -selection clipboard < ~/.ssh/id_rsa.pub
 >     ```
@@ -212,10 +212,26 @@ git remote rm origin
 
 增加https远程仓库地址
 
-```
+```bash
 git remote add origin http://yourname:password@git.oschina.net/name/project.git
 ```
 
+## 删除密码缓存
+
+配置有三个，优先级依次升高，**--system** **--global** **--local**
+
+密码缓存主要是 **credential.helper**，我们将它重设即可
+
+```bash
+# 查看所有配置
+git config -l
+# 查看所有配置及所在文件
+git config --list --show-origin
+# 重设密码缓存
+git config --system --unset credential.helper
+```
+
+主要是github不在支持密码拉取和推送啦
 
 ## 从零开始
 
