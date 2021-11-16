@@ -12,6 +12,12 @@ A graph is used to model pairwise relations (edges) between objects (nodes). A s
 
 None of these attributes is required. In fact, the [`Data`](https://pytorch-geometric.readthedocs.io/en/1.7.2/modules/data.html#torch_geometric.data.Data) object is not even restricted to these attributes. We can, *e.g.*, extend it by `data.face` to save the connectivity of triangles from a 3D mesh in a tensor with shape `[3, num_faces]` and type `torch.long`.不局限于上述属性
 
+> `torch_geometric.data.Data`表示的是有向图，所以在表示无向图的时候，一条边就要用两条弧来表示，这个和`networkX`中的图表示还不太一样
+>
+> 节点和节点特征的对应关系（我猜的）：节点id是long，data.x[id] 就是对应节点id的特征
+>
+> 边和边特征的对应关系
+
 ### 代码示例
 
 We show a simple example of an unweighted and undirected graph with three nodes and four edges. Each node contains exactly one feature:
