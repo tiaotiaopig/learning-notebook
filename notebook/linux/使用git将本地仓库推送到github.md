@@ -233,6 +233,52 @@ git config --system --unset credential.helper
 
 主要是github不在支持密码拉取和推送啦
 
+## 使用代理（翻墙）
+
+使用命令直接设定socks或者http代理即可。
+
+### socks代理
+
+```bash
+git config --global http.proxy 'socks5://127.0.0.1:1080'
+git config --global https.proxy 'socks5://127.0.0.1:1080'
+```
+
+也可以直接修改~/.gitconfig文件。
+
+新建或修改这两项配置
+
+```bash
+vi ~/.gitconfig
+
+[http]
+proxy = socks5://127.0.0.1:1080
+[https]
+proxy = socks5://127.0.0.1:1080
+```
+
+### http代理
+
+```bash
+git config --global http.proxy http://127.0.0.1:8080
+git config --global https.proxy https://127.0.0.1:8080
+```
+
+然后再git clone等命令就会自动走代理了。
+
+### 取消代理
+
+```bash
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+### 查看配置信息
+
+```bash
+git config -l --global
+```
+
 ## 从零开始
 
 在github上创建一个空的仓库,这次可以选择readme和gitignore文件
