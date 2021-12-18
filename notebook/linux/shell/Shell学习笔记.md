@@ -103,12 +103,12 @@ echo "hello shell" >> one.txt
 
 变量访问方式:
 
-	+ `$var_name`
-	+ `${var_name}`    可以拼接字符串
++ `$var_name`
++ `${var_name}`    可以拼接字符串
 
 变量删除:
 
-	+ `unset var_name`
++ `unset var_name`
 
 变量赋值:
 
