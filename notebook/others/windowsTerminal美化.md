@@ -77,3 +77,24 @@ JSON复制
     "hidden": false
 },
 ```
+
+## powershell alias
+
+其实就是写一个powershell函数
+
+```powershell
+# 查看powershell的配置文件
+echo $PROFILE
+# 这是我的配置位置
+cd C:\Users\28072\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
+# 使用vscode打开，添加一个函数
+function login {
+    ssh lifeng@192.168.50.17
+}
+# 执行设置
+Set-ExecutionPolicy RemoteSigned # 这个需要管理员身份运行
+# 或者为当前用户生效
+Set-ExecutionPolicy -Scope CurrentUser
+# 然后输入RemoteSigned即可
+```
+

@@ -165,6 +165,66 @@ git remote add origin https://
     http://yourname:password@git.oschina.net/name/project.git
     ~~~
 
+## git stash
+
+> `git stash`主要是将已经修改但是不想提交的内容保存到堆栈中，后续可以在某个分支上恢复出堆栈中的内容（可以恢复到任意指定的分支上），其作用范围包括工作区和暂存区的内容，就说所有未提交的内容都会被保存到堆栈中
+>
+> 我要使用这个，主要是因为拉取更新时，和本地修改冲突啦，拉取失败
+>
+> 这时就可以使用stash，将本地修改暂存，然后再拉取，最后恢复修改
+
+1. `git stash`
+
+   能够将所有未提交的修改（工作区和暂存区）保存至堆栈中，用于后续恢复当前工作目录。
+
+2. `git stash save`
+
+   作用等同于git stash，区别是可以加一些注释，如下：
+
+   ```bash
+   git status
+   # stash@{0}: WIP on master: b2f489c second
+   git status save "test1"
+   # stash@{0}: On master: test1
+   ```
+
+3. `git stash list`
+
+   查看当前stash中的内容
+
+4. `git stash pop`
+
+   将当前stash中的内容弹出，并应用到当前分支对应的工作目录上。
+   注：该命令将堆栈中最近保存的内容删除（栈是先进后出）
+
+   如果从stash恢复的内容和当前目录发生了冲突（修改了同一行数据），可以通过创建新的分支解决冲突
+
+5. `git stash apply`
+
+   将堆栈中的内容应用到当前目录，不同于git stash pop，该命令不会将内容从堆栈中删除，也就说该命令能够将堆栈的内容多次应用到工作目录中，适应于多个分支的情况。
+
+   可以使用`git stash apply + stash名字`（如stash@{1}）指定恢复哪个stash到当前的工作目录。
+
+6. `git stash drop + 名称`
+
+   从堆栈中移除某个指定的stash
+
+7. `git stash clear`
+
+   清除堆栈中的所有内容
+
+8. `git stash show`
+
+   查看堆栈中最新保存的stash和当前目录的差异。
+
+   `git stash show stash@{1}`查看指定的stash和当前目录差异。
+   通过 `git stash show -p` 查看详细的不同
+
+   同样，通过`git stash show stash@{1} -p`查看指定的stash的差异内容。
+
+9. `git stash branch`
+
+   从最新的stash创建分支
 
 ## https方式保存密码
 
@@ -287,3 +347,11 @@ git config -l --global
 git clone ssh地址
 使用IDE打开这个根目录作为项目的根目录
 ```
+
+## 常见问题
+
+1. git status 中文乱码
+
+   `git config --global core.quotepath false`解决
+
+2. 
