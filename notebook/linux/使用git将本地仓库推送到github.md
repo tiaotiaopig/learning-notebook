@@ -346,6 +346,17 @@ git config -l --global
 ```shell
 git clone ssh地址
 使用IDE打开这个根目录作为项目的根目录
+echo "# res-draw" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/tiaotiaopig/res-draw.git
+git push -u origin main
+
+git remote add origin https://github.com/tiaotiaopig/res-draw.git
+git branch -M main
+git push -u origin main
 ```
 
 ## 常见问题

@@ -45,6 +45,53 @@ public void backtrack (char[] str, int index, String t, StringBuilder sb) {
 >
 > 因此，我们只需要将 for 改掉就可以了，我们使用 index 控制当前遍历位置
 
+## 两种写法
+
+> 一种写法，面临决策 选 或者 不选，使用一个索引变量标识当前所在位置，这个思路更加清晰
+>
+> 另一种写法，`for` 循环，这个更加通用，也可以表示选 或者 不选
+>
+> 下面以39. 组合总和为例
+
+```java
+public List<List<Integer>> combinationSum(int[] candidates, int target) {
+    List<List<Integer>> res = new ArrayList<>();
+    backtrack(candidates, 0, target, new ArrayList<>(), res);
+    return res;
+}
+
+public void backtrack(int[] candidates, int index, int target, List<Integer> selected, List<List<Integer>> res) {
+    if (index == candidates.length || target <= 0) {
+        if (target == 0) res.add(new ArrayList<>(selected));
+        return ;
+    }
+    // 不选（跳过当前元素），index + 1
+    backtrack(candidates, index + 1, target, selected, res);
+    // 选择当前元素， index
+    selected.add(candidates[index]);
+    // 可以重复使用，还是 index
+    backtrack(candidates, index, target - candidates[index], selected, res);
+    selected.remove(selected.size() - 1);
+}
+
+public void backtrack(int[] candidates, int index, int target, List<Integer> selected, List<List<Integer>> res) {
+    if (index == candidates.length || target <= 0) {
+        if (target == 0) res.add(new ArrayList<>(selected));
+        return ;
+    }
+    // 循环从index开始，保证结果不重复
+    for (int i = index; i < candidates.length; i++) {
+        // 选择 i
+        selected.add(candidates[i]);
+        backtrack(candidates, i, target - candidates[i], selected, res);
+        selected.remove(selected.size() - 1);
+        // 进入下一轮循环，就是不选 i
+    }
+}
+```
+
+ 
+
 ## 说明
 
 > 回溯法就是我们常说的深度优先遍历，本质上就是一种暴力穷举法，按照规律进行列举，防止有所遗漏
@@ -62,3 +109,29 @@ public void backtrack (char[] str, int index, String t, StringBuilder sb) {
 > 1. 46  全排列
 > 2. 51 N皇后
 > 3. 131 分割回文串
+
+1. 46 全排列
+
+   ```java
+       public List<List<Integer>> permute(int[] nums) {
+           List<List<Integer>> res = new ArrayList<>();
+           backtrack(nums, new ArrayList<>(), res);
+           return res;
+       }
+   
+       public void backtrack(int[] nums, List<Integer> selected, List<List<Integer>> res) {
+           if (selected.size() == nums.length) {
+               res.add(new ArrayList<>(selected));
+               return ;
+           }
+           for (int i = 0; i < nums.length; i++) {
+               if (!selected.contains(nums[i])) {
+                   selected.add(nums[i]);
+                   backtrack(nums, selected, res);
+                   selected.remove(selected.size() - 1);
+               }
+           }
+       }
+   ```
+
+2. 
