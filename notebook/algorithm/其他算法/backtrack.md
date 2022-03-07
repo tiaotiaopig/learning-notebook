@@ -104,6 +104,14 @@ public void backtrack(int[] candidates, int index, int target, List<Integer> sel
 > 2. 选择列表：当前可以做的选择
 > 3. 结束条件：到达决策树底层，无需在做选择
 
+## 两种写法
+
+> 一种就是使用`for` 循环的标准模板
+>
+> 另一种就是 选 或者 不选 ，使用一个index 表示当前待选元素
+>
+> 本质上二者是一致的，`for` 循环的逻辑中，就包含了选 或者 不选
+
 ## 典型题目
 
 > 1. 46  全排列
@@ -133,5 +141,8 @@ public void backtrack(int[] candidates, int index, int target, List<Integer> sel
            }
        }
    ```
-
-2. 
+> 4. 39 组合总和
+> 5. 40 组合总和II
+> 6. 47 全排列II
+> 7. 78 子集
+> 8. 90 子集II

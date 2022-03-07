@@ -250,6 +250,19 @@ git config credential.helper 'cache --timeout=3600'
 git config --global credential.helper store
 ```
 
+除了 **cache** **store**,还有其他第三方的 **credential.helper**,例如微软的**credential-manager-core**
+
+在window-git下时自带的
+
+```bash
+# 开启
+git credential-manager-core configure
+# 关闭
+git credential-manager-core unconfigure
+```
+
+据官方说很安全，但是无法清缓存，很难受啊，在linux下也可以使用，需要单独安装
+
 增加远程地址的时候带上密码也是可以的。(推荐)
 
 ```
