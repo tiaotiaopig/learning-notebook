@@ -38,4 +38,17 @@
 ### 典型例题
 
 1. 516 [最长回文子序列](https://leetcode-cn.com/problems/longest-palindromic-subsequence/)
-2. 
+
+## 二叉树路径问题
+
+一般都是代码量较少的hard题，涉及二叉树的路径问题，例如最大路径和，最小开销树
+
+可以使用动态规划，一般使用**记忆化存储** + **深度优先搜索**
+
+状态定位很巧妙，定义为**单条路径**的最大路径和最小开销树
+
+这样一棵二叉树就由根节点和左右两条路径组成
+
+### 典型例题
+
+1. [124. 二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
