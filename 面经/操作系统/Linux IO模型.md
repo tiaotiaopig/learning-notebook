@@ -66,8 +66,6 @@ int select (int __nfds, fd_set *__restrict __readfds,
    - 每次调用select或者poll，都需要将监听的fd_set或者pollfd发送给内核态，如果需要监听大量的文件描述符，这样的效率是很低下的
    - 在内核态中，每次需要对传入的文件描述符进行轮询，查询是否有对应的事件产生。
 
-
-
 ## epoll
 
 epoll更加高效，主要由下面三个函数组成：
