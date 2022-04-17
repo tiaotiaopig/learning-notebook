@@ -12,7 +12,7 @@
 
 ## 网络包接收流程
 
-![图片](https://s2.loli.net/2022/04/04/8MKlNaVtuOH2JGv.png)网络包收发过程.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/8MKlNaVtuOH2JGv.png)网络包收发过程.png
 
 - 当`网络数据帧`通过网络传输到达网卡时，网卡会将网络数据帧通过`DMA的方式`放到`环形缓冲区RingBuffer`中。
 
@@ -49,7 +49,7 @@
 
 ## 网络包发送流程
 
-![图片](https://s2.loli.net/2022/04/04/gRwkTAq3d9sQ6mr.png)网络包发送过程.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/%E7%BD%91%E7%BB%9C%E5%8C%85%E5%8F%91%E9%80%81%E8%BF%87%E7%A8%8B.png)网络包发送过程.png
 
 - 当我们在应用程序中调用`send`系统调用发送数据时，由于是系统调用所以线程会发生一次用户态到内核态的转换，在内核中首先根据`fd`将真正的Socket找出，这个Socket对象中记录着各种协议栈的函数地址，然后构造`struct msghdr`对象，将用户需要发送的数据全部封装在这个`struct msghdr`结构体中。
 - 调用内核协议栈函数`inet_sendmsg`，发送流程进入内核协议栈处理。在进入到内核协议栈之后，内核会找到Socket上的具体协议的发送函数。
@@ -130,7 +130,7 @@
 
 经过前边对网络数据包接收流程的介绍，在这里我们可以将整个流程总结为两个阶段：
 
-![图片](https://s2.loli.net/2022/04/04/mg7XuKvEAQSZNjy.png)数据接收阶段.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/%E6%95%B0%E6%8D%AE%E6%8E%A5%E6%94%B6%E9%98%B6%E6%AE%B5.png)数据接收阶段.png
 
 - **数据准备阶段：** 在这个阶段，网络数据包到达网卡，通过`DMA`的方式将数据包拷贝到内存中，然后经过硬中断，软中断，接着通过内核线程`ksoftirqd`经过内核协议栈的处理，最终将数据发送到`内核Socket`的接收缓冲区中。
 - **数据拷贝阶段：** 当数据到达`内核Socket`的接收缓冲区中时，此时数据存在于`内核空间`中，需要将数据`拷贝`到`用户空间`中，才能够被应用程序读取。
@@ -145,7 +145,7 @@
 
 如果这时内核`Socket`的接收缓冲区没有数据，那么线程就会一直`等待`，直到`Socket`接收缓冲区有数据为止。随后将数据从内核空间拷贝到用户空间，`系统调用read`返回。
 
-![图片](https://s2.loli.net/2022/04/04/gZznTulo2NbVRtG.png)阻塞IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/gZznTulo2NbVRtG.png)阻塞IO.png
 
 从图中我们可以看出：**阻塞**的特点是在第一阶段和第二阶段`都会等待`。
 
@@ -156,7 +156,7 @@
 - 在第一阶段，当`Socket`的接收缓冲区中没有数据的时候，`阻塞模式下`应用线程会一直等待。`非阻塞模式下`应用线程不会等待，`系统调用`直接返回错误标志`EWOULDBLOCK`。
 - 当`Socket`的接收缓冲区中有数据的时候，`阻塞`和`非阻塞`的表现是一样的，都会进入第二阶段`等待`数据从`内核空间`拷贝到`用户空间`，然后`系统调用返回`。
 
-![图片](https://s2.loli.net/2022/04/04/5PwkygpKzNJxnd3.png)非阻塞IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images5PwkygpKzNJxnd3.png)非阻塞IO.png
 
 从上图中，我们可以看出：**非阻塞**的特点是第一阶段`不会等待`，但是在第二阶段还是会`等待`。
 
@@ -174,7 +174,7 @@
 
 Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
-![图片](https://s2.loli.net/2022/04/04/72MOzBvmyijsknr.png)同步IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/72MOzBvmyijsknr.png)同步IO.png
 
 ### 异步
 
@@ -188,7 +188,7 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 但Linux kernel 在5.1版本由Facebook的大神Jens Axboe引入了新的异步IO库`io_uring` 改善了原来Linux native AIO的一些性能问题。性能相比`Epoll`以及之前原生的`AIO`提高了不少，值得关注。
 
-![图片](https://s2.loli.net/2022/04/04/9aQD2qhGHlMiImN.png)异步IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/%E5%BC%82%E6%AD%A5.png)异步IO.png
 
 ## IO模型
 
@@ -200,7 +200,7 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 ## 阻塞IO（BIO）
 
-![图片](https://s2.loli.net/2022/04/04/gZznTulo2NbVRtG.png)阻塞IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/gZznTulo2NbVRtG.png)阻塞IO.png
 
 经过前一小节对`阻塞`这个概念的介绍，相信大家可以很容易理解`阻塞IO`的概念和过程。
 
@@ -224,7 +224,7 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 ## 阻塞IO模型
 
-![图片](https://s2.loli.net/2022/04/04/nuoEgfq8G9m6OT5.png)阻塞IO模型.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/nuoEgfq8G9m6OT5.png)阻塞IO模型.png
 
 由于`阻塞IO`的读写特点，所以导致在`阻塞IO`模型下，每个请求都需要被一个独立的线程处理。一个线程在同一时刻只能与一个连接绑定。来一个请求，服务端就需要创建一个线程用来处理请求。
 
@@ -248,7 +248,7 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 基于这个需求，第一种解决方案`非阻塞IO`就出现了。我们在上一小节中介绍了`非阻塞`的概念，现在我们来看下网络读写操作在`非阻塞IO`下的特点：
 
-![图片](https://s2.loli.net/2022/04/04/5PwkygpKzNJxnd3.png)非阻塞IO.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/5PwkygpKzNJxnd3.png)非阻塞IO.png
 
 ### 非阻塞读
 
@@ -265,7 +265,7 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 ## 非阻塞IO模型
 
-![图片](https://s2.loli.net/2022/04/04/j5OWI87NHiVefur.png)非阻塞IO模型.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/%E9%9D%9E%E9%98%BB%E5%A1%9EIO%E6%A8%A1%E5%9E%8B.png)非阻塞IO模型.png
 
 基于以上`非阻塞IO`的特点，我们就不必像`阻塞IO`那样为每个请求分配一个线程去处理连接上的读写了。
 
@@ -310,14 +310,14 @@ Linux下的 `epoll`和Mac 下的 `kqueue`都属于`同步 IO`。
 
 `select`系统调用将`轮询`的操作交给了`内核`来帮助我们完成，从而避免了在`用户空间`不断的发起轮询所带来的的系统性能开销。
 
-![图片](https://s2.loli.net/2022/04/04/WYRX8snzFQKNoOc.png)select.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/WYRX8snzFQKNoOc.png)select.png
 
 - 首先用户线程在发起`select`系统调用的时候会`阻塞`在`select`系统调用上。此时，用户线程从`用户态`切换到了`内核态`完成了一次`上下文切换`
 - 用户线程将需要监听的`Socket`对应的文件描述符`fd`数组通过`select`系统调用传递给内核。此时，用户线程将`用户空间`中的文件描述符`fd`数组`拷贝`到`内核空间`。
 
 这里的**文件描述符数组**其实是一个`BitMap`，`BitMap`下标为`文件描述符fd`，下标对应的值为：`1`表示该`fd`上有读写事件，`0`表示该`fd`上没有读写事件。
 
-![图片](https://s2.loli.net/2022/04/04/jXYkrfsCKaEDxiy.png)fd数组BitMap.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/jXYkrfsCKaEDxiy.png)fd数组BitMap.png
 
 **文件描述符fd**其实就是一个`整数值`，在Linux中一切皆文件，`Socket`也是一个文件。描述进程所有信息的数据结构`task_struct`中有一个属性`struct files_struct *files`，它最终指向了一个数组，数组里存放了进程打开的所有文件列表，文件信息封装在`struct file`结构体中，这个数组存放的类型就是`struct file`结构体，`数组的下标`则是我们常说的文件描述符`fd`。
 
@@ -426,7 +426,7 @@ struct pollfd {
 
 #### 进程中管理文件列表结构
 
-![图片](https://s2.loli.net/2022/04/04/Fgut8qOpjLS3XTC.png)进程中管理文件列表结构.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8%E7%BB%93%E6%9E%84.png)进程中管理文件列表结构.png
 
 `struct tast_struct`是内核中用来表示进程的一个数据结构，它包含了进程的所有信息。本小节我们只列出和文件管理相关的属性。
 
@@ -463,7 +463,7 @@ static const struct file_operations socket_file_ops = {
 
 #### Socket内核结构
 
-![图片](https://s2.loli.net/2022/04/04/XOpBzVatYZckASl.png)Socket内核结构.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/XOpBzVatYZckASl.png)Socket内核结构.png
 
 在我们进行网络程序的编写时会首先创建一个`Socket`，然后基于这个`Socket`进行`bind`，`listen`，我们先将这个`Socket`称作为`监听Socket`。
 
@@ -521,7 +521,7 @@ struct proto tcp_prot = {
 
 > 之前提到的对`Socket`发起的系统IO调用，在内核中首先会调用`Socket`的文件结构`struct file`中的`file_operations`文件操作集合，然后调用`struct socket`中的`ops`指向的`inet_stream_ops`socket操作函数，最终调用到`struct sock`中`sk_prot`指针指向的`tcp_prot`内核协议栈操作函数接口集合。
 
-![图片](https://s2.loli.net/2022/04/04/gRTQ3ber9n4GWH1.png)系统IO调用结构.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/gRTQ3ber9n4GWH1.png)系统IO调用结构.png
 
 - 将`struct sock` 对象中的`sk_data_ready` 函数指针设置为 `sock_def_readable`，在`Socket`数据就绪的时候内核会回调该函数。
 - `struct sock`中的`等待队列`中存放的是系统IO调用发生阻塞的`进程fd`，以及相应的`回调函数`。**记住这个地方，后边介绍epoll的时候我们还会提到！**
@@ -546,7 +546,7 @@ struct proto tcp_prot = {
 
 **熟悉了内核函数调用栈后，我们来看下系统IO调用在`tcp_recvmsg`内核函数中是如何将用户进程给阻塞掉的**
 
-![图片](https://s2.loli.net/2022/04/04/xAQdsYiB2CpHMF7.png)系统IO调用阻塞原理.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/%E7%B3%BB%E7%BB%9FIO%E8%B0%83%E7%94%A8%E9%98%BB%E5%A1%9E%E5%8E%9F%E7%90%86.png)系统IO调用阻塞原理.png
 
 ```
 int tcp_recvmsg(struct kiocb *iocb, struct sock *sk, struct msghdr *msg,
@@ -610,7 +610,7 @@ int sk_wait_data(struct sock *sk, long *timeo)
 
 上边这些过程是内核接收网络数据的完整过程，下边我们来看下，当数据包接收完毕后，用户进程是如何被唤醒的。
 
-![图片](https://s2.loli.net/2022/04/04/ETgIfvWeAirK5o2.png)系统IO调用唤醒原理.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/%E7%B3%BB%E7%BB%9FIO%E8%B0%83%E7%94%A8%E5%94%A4%E9%86%92%E5%8E%9F%E7%90%86.png)系统IO调用唤醒原理.png
 
 - 当软中断将`sk_buffer`放到`Socket`的接收队列上时，接着就会调用`数据就绪函数回调指针sk_data_ready`，前边我们提到，这个函数指针在初始化的时候指向了`sock_def_readable`函数。
 - 在`sock_def_readable`函数中会去获取`socket->sock->sk_wq`等待队列。在`wake_up_common`函数中从等待队列`sk_wq`中找出`一个`等待项`wait_queue_t`，回调注册在该等待项上的`func`回调函数（`wait_queue_t->func`）,创建等待项`wait_queue_t`是我们提到，这里注册的回调函数是`autoremove_wake_function`。
@@ -638,7 +638,7 @@ static const struct file_operations eventpoll_fops = {
 }
 ```
 
-![图片](https://s2.loli.net/2022/04/04/vCVJ8U6qMc9REjo.png)eopll在进程中的整体结构.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/vCVJ8U6qMc9REjo.png)eopll在进程中的整体结构.png
 
 ```
 struct eventpoll {
@@ -674,7 +674,7 @@ struct eventpoll {
 
 1. 首先要在epoll内核中创建一个表示`Socket连接`的数据结构`struct epitem`，而在`epoll`中为了综合性能的考虑，采用一颗红黑树来管理这些海量`socket连接`。所以`struct epitem`是一个红黑树节点。
 
-![图片](https://s2.loli.net/2022/04/04/PnyBNwbviHs9eZ7.png)struct epitem.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/struct%20epitem.png)struct epitem.png
 
 ```
 struct epitem
@@ -700,7 +700,7 @@ struct epitem
 
 > epoll的回调函数`ep_poll_callback`正是`epoll`同步IO事件通知机制的核心所在，也是区别于`select，poll`采用内核轮询方式的根本性能差异所在。
 
-![图片](https://s2.loli.net/2022/04/04/r5uSB2J1zDiEZ6N.png)epitem创建等待项.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/epitem%E5%88%9B%E5%BB%BA%E7%AD%89%E5%BE%85%E9%A1%B9.png)epitem创建等待项.png
 
 **这里又出现了一个新的数据结构`struct eppoll_entry`，那它的作用是干什么的呢？大家可以结合上图先猜测下它的作用!**
 
@@ -739,15 +739,15 @@ struct eppoll_entry {
 1. 用户程序调用`epoll_wait`后，内核首先会查找epoll中的就绪队列`eventpoll->rdllist`是否有`IO就绪`的`epitem`。`epitem`里封装了`socket`的信息。如果就绪队列中有就绪的`epitem`，就将`就绪的socket`信息封装到`epoll_event`返回。
 2. 如果`eventpoll->rdllist`就绪队列中没有`IO就绪`的`epitem`，则会创建等待项`wait_queue_t`，将用户进程的`fd`关联到`wait_queue_t->private`上，并在等待项`wait_queue_t->func`上注册回调函数`default_wake_function`。最后将等待项添加到`epoll`中的等待队列中。用户进程让出CPU，进入`阻塞状态`。
 
-![图片](https://s2.loli.net/2022/04/04/58lVjUNv2nhGPHt.png)epoll_wait同步获取数据.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/epoll_wait%E5%90%8C%E6%AD%A5%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE.png)epoll_wait同步获取数据.png
 
 > 这里和`阻塞IO模型`中的阻塞原理是一样的，只不过在`阻塞IO模型`中注册到等待项`wait_queue_t->func`上的是`autoremove_wake_function`，并将等待项添加到`socket`中的等待队列中。这里注册的是`default_wake_function`，将等待项添加到`epoll`中的等待队列上。
 
-![图片](https://s2.loli.net/2022/04/04/q7Gx1TlWgjASNMO.png)数据到来epoll_wait流程.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/q7Gx1TlWgjASNMO.png)数据到来epoll_wait流程.png
 
 1. **前边做了那么多的知识铺垫，下面终于到了`epoll`的整个工作流程了：**
 
-![图片](https://s2.loli.net/2022/04/04/bmneixkVzZ34qRo.png)epoll_wait处理过程.png
+![图片](https://raw.githubusercontent.com/tiaotiaopig/feng-images-store/main/images/epoll_wait%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B.png)epoll_wait处理过程.png
 
 - 当网络数据包在软中断中经过内核协议栈的处理到达`socket`的接收缓冲区时，紧接着会调用socket的数据就绪回调指针`sk_data_ready`，回调函数为`sock_def_readable`。在`socket`的等待队列中找出等待项，其中等待项中注册的回调函数为`ep_poll_callback`。
 - 在回调函数`ep_poll_callback`中，根据`struct eppoll_entry`中的`struct wait_queue_t wait`通过`container_of宏`找到`eppoll_entry`对象并通过它的`base`指针找到封装`socket`的数据结构`struct epitem`，并将它加入到`epoll`中的就绪队列`rdllist`中。
