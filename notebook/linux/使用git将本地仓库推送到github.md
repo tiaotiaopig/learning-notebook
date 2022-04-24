@@ -29,10 +29,10 @@ git pull origin main
 > 3. ```shell
 >     ssh-keygen -t rsa -C "youremail@example.com"
 >     注意：这个邮箱地址写你自己的
-    <<<<<<< Updated upstream
+      <<<<<<< Updated upstream
 >     sudo apt-get install xclip
 >     # Copies the contents of the id_rsa.pub file to your clipboard
-    =======
+      =======
       ```
 > 
 >```shell
@@ -385,10 +385,6 @@ git add README.md
 git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/tiaotiaopig/res-draw.git
-git push -u origin main
-
-git remote add origin https://github.com/tiaotiaopig/res-draw.git
-git branch -M main
 git push -u origin main
 ```
 
