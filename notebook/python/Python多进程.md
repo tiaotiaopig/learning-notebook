@@ -28,6 +28,7 @@ with mp.Pool(mp.cpu_count() // 4) as pool:
         for param in params:
             res = pool.apply_async(add, param)
             res.get() # 最大败笔，直接堵塞，还不如单进程，应该放外边
+        # 放外边也就只能拿到最后一次的结果,所以应该用列表将结果保存,然后逐个get
 ```
 
 ### map

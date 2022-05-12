@@ -16,9 +16,23 @@
 >
 >    在工作区修改文件后,使用**add**命令,将修改暂存到这里
 >
+>    撤销操作:`git rm --cached [filename]`或者 `git reset HEAD [filename]`
+>
+>    如果想丢弃工作区修改,恢复到上一次commit时的状态,`git checkout -- filename`(慎用)
+>
 > 3. 提交历史(**commit history**)
 >
 >    使用commit命令将暂时区的修改进行提交,会生成提交历史树的一个新节点,一般使用一个40位的哈希值进行标识(在**checkout**时完整的哈希值不是必须的,给出部分即可)
+>
+>    并不需要撤销,修改即可 `git commit --amend`可以将暂存区文件提交,可以修改提交信息,其实所谓的修改,本质上使用一个新的提交代替原来旧的提交
+>
+>    `git tag -a v1.0 checksum -m '标签说明'`
+>
+>    `git show v1.0`
+>
+>    -a 附注标签,
+>
+>    给指定提交打标签,并附上说明
 >
 > 4. 远程仓库(**remote repository**)
 >
@@ -49,12 +63,32 @@
 > `git rebase branch1 branch2`将分支2的提交合并分支1后面(分支1在前,分支2在后),**HEAD**指向分支2
 >
 > `git rebase branch1 [HEAD]`只有一个参数时,相当于和HEAD做合并
+>
+> 总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史， 从不对已推送至别处的提交执行变基操作
+
+## cherry-pick
+
+> 非常灵活的命令,很好用
+>
+> `git cherry-pick c1 c5 c7`依次选取c1 c5 c7三次提交,加到HEAD后,并移动到最新
+
+## remote
+
+> ```shell
+> # 查看所有远程仓库名称和url
+> git remote -v
+> # 查看详情
+> git remote show [remote-name]
+> git remote rename old new
+> ```
 
 ## fetch pull push
 
 > `git fetch`拉取所有远程分支,不做合并
 >
-> `git pull = git fetch + git rebase origin/main`
+> `git pull = git fetch + git merge origin/main`
+>
+> `git pull --rebase`
 >
 > `git push`当前分支推送,如果当前分支没有追踪远程分支的话会报错
 >
