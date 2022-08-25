@@ -69,3 +69,12 @@ MySQL官网：https://dev.mysql.com/downloads/mysql/
 
 ## Linux
 
+在WSL2上安装有点小问题
+
+```bash
+sudo mkdir -p /var/run/mysqld
+# 将/var/run/mysqld/的所有者设置为mysql
+sudo chown mysql /var/run/mysqld/
+sudo service mysql restart
+```
+

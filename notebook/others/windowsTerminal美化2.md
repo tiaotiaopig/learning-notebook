@@ -215,7 +215,7 @@ notepad $PROFILE
 
 在配置文件中粘贴以下代码：
 
-```
+```powershell
 # Import Modules
 Import-Module oh-my-posh
 Import-Module posh-git
