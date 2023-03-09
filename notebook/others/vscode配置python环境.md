@@ -56,7 +56,7 @@ code .
 
 ![image-20211031162129728](https://i.loli.net/2021/10/31/lfhIaA74XvyujPs.png)
 
-我们可以在**lacunch.json**配置debug的参数，通用的如下：
+我们可以在**launch.json**配置debug的参数，通用的如下：
 
 ```json
 {
@@ -122,3 +122,15 @@ print(sys.path)
 
    [CSDN解决方案](https://dalewushuang.blog.csdn.net/article/details/119661991?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-119661991-blog-125376794.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-3-119661991-blog-125376794.pc_relevant_recovery_v2&utm_relevant_index=6)
 
+## 官方说明
+
+[vscode的python插件配置](https://code.visualstudio.com/docs/python/environments)
+
+上面链接有说明，简述如下：
+
+> 1. 环境变量文件默认定义为：`python.envFile:${workspaceFolder}/.env`，可以`ctrl + ,`搜索`python.envFile`进行设置；
+> 2. 环境变量都是键值对表示`environment_variable=value`，使用`#`注释，值的部分可以引用**系统已定义**或**之前文件定义**的环境变量，通过`${environment_variable}`引用；
+> 3. 环境变量分隔，windows使用分号;作为分隔符，linux使用冒号:作为分隔符；
+> 4. debug的配置文件`launch.json`可以配置属性`envFile`，默认参照`${workspaceFolder}/.env`，也可手动设置路径，优先级较高
+> 5. `launch.json`的`env`属性优先级最高
+> 6. `PYTHONPATH`环境变量可以为python编译器在寻找模块时指定额外路径，在VScode中可以通过`terminal.integrated.env.*`设置以及`.env`文件中设置。前者只在使用命令行的所有位置生效，`linter or formatter`不生效
