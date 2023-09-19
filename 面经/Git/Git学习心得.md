@@ -107,3 +107,21 @@
 > `git branch -u origin/main foo`
 
 git 命令太灵活了,同样的功能可以使用不同的命令实现,我们需要记住常用的几个即可
+
+## .gitignore
+
+> 1. 修改.gitignore文件后，使其生效
+>
+>    `git rm -r --cached .
+>    git add .
+>    git commit -m "Fixed untracked files"`
+>
+> 2. 常见写法
+>
+>    > 1. `foo`: 匹配所有路径中名为`foo`文件和目录
+>    > 2. `*.log`：匹配所有.log文件
+>    > 3. `build/`：匹配`build/`目录及其所有子目录内容
+>    > 4. `build/`*：匹配`build/`目录及其内容，但不包括其子目录
+>    > 5. `**/config/*.cfg`：匹配所有 `config` 目录及其子目录中的 `.cfg` 文件
+>
+>    注意：`foo`和`/foo`区别：前者匹配所有目录和文件，后者匹配根目录下的

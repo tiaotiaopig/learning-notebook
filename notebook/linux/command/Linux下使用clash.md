@@ -57,4 +57,21 @@
 
     [策略组设置]: http://clash.razord.top
 
-    
+
+## 使用代理
+
+为了方便，防止每次都要输入代理地址，将代理地址设为zsh的环境变量，以后使用时，直接引用
+
+```bash
+# 编辑~/.zshrc添加变量
+vim ~/.zshrc
+PROXY=127.0.0.1:8890
+
+# curl使用代理
+curl -x $PROXY https://google.com
+
+# wget使用代理
+
+
+```
+

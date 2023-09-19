@@ -497,6 +497,8 @@ export CONDA_PATH=/usr/local/software/anaconda3
 export PATH=${CONDA_PATH}/bin:$PATH
 ```
 
+> **注意：**如果在安装过程中没有出现初始化选项，可以使用命令`conda init zsh`
+
 ### 卸载
 
 删除anaconda，直接删除文件夹+清理环境变量即可
