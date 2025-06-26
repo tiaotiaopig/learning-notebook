@@ -1,15 +1,15 @@
-# nohub 和 screen
+# nohup 和 screen
 
 > ​		我们通常使用本地终端登录远程服务器，一般的任务会随着终端的关闭而停止，但是有些任务，我们希望即使终端关闭，这些任务也能在后台运行，例如后台服务或者实验程序，这时候我们就需要使用一些命令，实现这一目的
 
-## nohub
+## nohup
 
-`nohub`的字面意思是不挂起（no hang up），通常和`&`(后台运行搭配使用)
+`nohup`的字面意思是不挂起（no hang up），通常和`&`(后台运行搭配使用)
 
 ```bash
 # 后台运行脚本，输出信息到当前文件夹的nohub.out，& 脚本后台运行
 # 如果当前文件夹的nohub.out不可写，输出重定向到 $HOME/nohup.out 文件中
-nohub ./run.sh &
+nohup ./run.sh &
 # 如果不需要输出文件或这日志
 # 只输出错误信息到日志文件
 nohup ./program >/dev/null 2>log &
@@ -65,4 +65,3 @@ screen -d yourname # 远程detach某个session
 screen -d -r yourname # 结束当前session并回到yourname这个session
 # 进入某个session（窗口），使用exit命令或者ctr+d即可关闭窗口
 ```
-

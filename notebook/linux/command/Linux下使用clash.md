@@ -72,6 +72,5 @@ curl -x $PROXY https://google.com
 
 # wget使用代理
 
-
 ```
 

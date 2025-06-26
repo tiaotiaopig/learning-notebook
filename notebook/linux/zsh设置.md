@@ -55,3 +55,16 @@ chsh -r /usr/bin/zsh
    ```
 
 3. Restart zsh (such as by opening a new instance of your terminal emulator).
+
+## 常用插件
+
+```bash
+plugins=(
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    git
+    autojump
+    extract
+)
+```
+
